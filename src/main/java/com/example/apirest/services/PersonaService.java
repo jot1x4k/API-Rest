@@ -1,6 +1,8 @@
 package com.example.apirest.services;
 
+import java.lang.foreign.Linker.Option;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -21,36 +23,62 @@ public class PersonaService implements BaseService<Persona> {
     @Override
     @Transactional
     public List<Persona> findAll() throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        try {
+            List<Persona> entities = personaRepository.findAll();
+            return entities;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     @Transactional
     public Persona findById(Long id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        try {
+            Optional<Persona> entityOptional = personaRepository.findById(id);
+            return entityOptional.get();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     @Transactional
     public Persona save(Persona entity) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        try {
+            entity = personaRepository.save(entity);
+            return entity;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     @Transactional
     public Persona update(Long id, Persona entity) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+       try {
+            Optional<Persona> entityOptional = personaRepository.findById(id);
+            Persona persona = entityOptional.get();
+            persona = personaRepository.save(persona);
+            return persona;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     @Transactional
     public boolean delete(Long id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        try {
+            if (personaRepository.existsById(id)) {
+                personaRepository.deleteById(id);
+                return true;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
 }
