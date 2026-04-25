@@ -1,6 +1,6 @@
 package com.example.apirest.entities.audit;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.hibernate.envers.RevisionEntity;
 import org.hibernate.envers.RevisionNumber;

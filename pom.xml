@@ -56,8 +56,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-envers</artifactId>
-			<version>5.4.21.Final</version>
-    		<scope>compile</scope>
+			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

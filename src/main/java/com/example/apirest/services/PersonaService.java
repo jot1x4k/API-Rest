@@ -1,6 +1,5 @@
 package com.example.apirest.services;
 
-import java.lang.foreign.Linker.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +12,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class PersonaService implements BaseService<Persona> {
-    
+
     private PersonaRepository personaRepository;
 
     public PersonaService(PersonaRepository personaRepository) {
@@ -56,10 +55,10 @@ public class PersonaService implements BaseService<Persona> {
     @Override
     @Transactional
     public Persona update(Long id, Persona entity) throws Exception {
-       try {
+        try {
             Optional<Persona> entityOptional = personaRepository.findById(id);
             Persona persona = entityOptional.get();
-            persona = personaRepository.save(persona);
+            persona = personaRepository.save(entity);
             return persona;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
